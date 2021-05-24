@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+
+<body>
+    <div class="mt-5">
+        <div class="mt-5">
+            <button onclick="goBack()" class="btn btn-info">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+              Voltar
+            </button>
+        <a href="{{ url_for('material_add') }}" class="btn btn-success">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        Adicionar Material
+        </a>
+    </div>
+    <div><h5>&nbsp;&nbsp;</h5></div> 
+    <div class="limiter">
+        <div class="wrap-table100">
+            <div class="table100 ver1 m-b-110">
+                <div class="table100-head">
+                    <table>
+                        <thead>
+                            <tr class="row100 head">
+                                <th class="cell100 column1">ID</th>
+                                <th class="cell100 column2">Material</th>
+                                <th class="cell100 column3">Setor</th>
+                                <th class="cell100 column4">Quantidade</th>
+                                <th class="cell100 column4">Excluir</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="table100-body js-pscroll">
+                    <table>
+                        <tbody>
+                            {% for material in materials %}
+                            <tr class="row100 body">
+                                <td class="cell100 column1">{{ material.id }}</td>
+                                <td class="cell100 column2">{{ material.name }}</td>
+                                <td class="cell100 column3">{{ material.sector }}</td>
+                                <td class="cell100 column4">{{ material.quantity }}</td>
+                                <td class="cell100 column5">
+                                    <a class="btn btn-danger btn-sm" href="{{ url_for('delete_material', id=material.id) }}">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>   
+</body>
+<!--===============================================================================================-->	
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			var ps = new PerfectScrollbar(this);
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+			
+        function goBack(){
+        window.history.back()
+        }
+	</script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+{% endblock %}

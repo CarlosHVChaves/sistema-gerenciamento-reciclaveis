@@ -1,0 +1,20 @@
+{% extends  'base.html' %}
+
+{% from 'bootstrap/form.html' import render_form %}
+
+{% block content %}
+  <div class="mt-5">
+    <button onclick="goBack()" class="btn btn-info">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      Voltar
+    </button>
+  </div>
+  <div><h5>&nbsp;&nbsp;</h5></div> 
+  {% include 'components/notification.html' %}
+  {{render_form(form) }}
+  <script>
+    function goBack(){
+      window.history.back()
+    }
+  </script>
+{% endblock %}
